@@ -10,4 +10,6 @@ fi
 cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 go get -u all
 go mod tidy
-git commit --author="Pivotal Java Experience Team <cfje@pivotal.io>" -m "Go Module Update"
+git commit \
+  --author 'Pivotal Java Experience Team <cfje@pivotal.io>' \
+  --message 'Go Module Update'
