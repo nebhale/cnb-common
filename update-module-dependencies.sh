@@ -8,8 +8,10 @@ if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
 fi
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../source"
+
 go get -u all
 go mod tidy
+
 git \
   -c user.name='Pivotal Java Experience Team' \
   -c user.email='cfje@pivotal.io' \
