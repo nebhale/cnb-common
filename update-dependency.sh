@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+set -euo pipefail
 
 if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
   mkdir -p ${GOPATH}/pkg
@@ -8,15 +8,15 @@ if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
 fi
 
 sha256() {
-  cat "../${DEPENDENCY}/sha256"
+  cat "../dependency/sha256"
 }
 
 uri() {
-  cat "../${DEPENDENCY}/uri"
+  cat "../dependency/uri"
 }
 
 version() {
-  cat "../${DEPENDENCY}/version"
+  cat "../dependency/version"
 }
 
 
