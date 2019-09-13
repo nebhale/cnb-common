@@ -11,9 +11,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 go get -u all
 go mod tidy
 git \
-  -c user.name 'Pivotal Java Experience Team' \
-  -c user.email 'cfje@pivotal.io' \
+  -c user.name='Pivotal Java Experience Team' \
+  -c user.email='cfje@pivotal.io' \
   commit \
-  --signoff
+  --signoff \
   --all \
   --message 'Go Module Update'
