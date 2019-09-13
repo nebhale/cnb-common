@@ -26,7 +26,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 go build -ldflags='-s -w' -o bin/dependency github.com/cloudfoundry/libcfbuildpack/dependency
 bin/dependency \
   "${DEPENDENCY}" \
-  "[\d]+\.[\d]+(?:\.[\d]+)?" \
+  "${VERSION_PATTERN}" \
   "$(version)" \
   "$(uri)" \
   "$(sha256)"
