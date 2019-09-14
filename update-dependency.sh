@@ -37,4 +37,4 @@ git \
   commit \
   --signoff \
   --all \
-  --message "Dependency Upgrade: ${DEPENDENCY} $(version)"
+  --message "Dependency Upgrade: ${DEPENDENCY} $(version)" || true
