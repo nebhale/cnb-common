@@ -18,4 +18,4 @@ git \
   commit \
   --signoff \
   --all \
-  --message 'Go Module Update'
+  --message 'Go Module Update' || true
