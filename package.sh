@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
+  mkdir -p ${GOPATH}/pkg
+  ln -s $PWD/go-module-cache ${GOPATH}/pkg/mod
+fi
+
+cd "$(dirname "${BASH_SOURCE[0]}")/../source"
+
+ID=$(sed -n 's|id      = \"\(.*\)\"|\1|p' buildpack.toml | head -n1)
+VERSION="$(git describe --tags)"
+
+go run \
+  -ldflags='-s -w' \
+  github.com/cloudfoundry/libcfbuildpack/packager \
+  --archive \
+  --version "${VERSION}" \
+  "../package/${ID}-${VERSION}.tar.gz"
