@@ -14,5 +14,8 @@ inputs:
 outputs:
 - name: source
 
+caches:
+- path: go-module-cache
+
 run:
   path: cnb-common/update-module-dependencies.sh
