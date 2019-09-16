@@ -12,9 +12,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 ID=$(sed -n 's|id      = \"\(.*\)\"|\1|p' buildpack.toml | head -n1)
 VERSION="$(git describe --tags)"
 
-go run \
-  -ldflags='-s -w' \
-  github.com/cloudfoundry/libcfbuildpack/packager \
+go build -ldflags='-s -w' -o bin/package github.com/cloudfoundry/libcfbuildpack/packager
+bin/package \
   --archive \
   --version "${VERSION}" \
   "../package/${ID}-${VERSION}.tar.gz"
