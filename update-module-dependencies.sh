@@ -4,7 +4,7 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 
-go get -u all
+GOPRIVATE=* go get -u all
 go mod tidy
 
 git \
