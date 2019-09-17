@@ -9,6 +9,8 @@ fi
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 
+git fetch --tags
+
 ID=$(sed -n 's|id      = \"\(.*\)\"|\1|p' buildpack.toml | head -n1)
 VERSION="$(git describe --tags)"
 VERSION="${VERSION:1}"
