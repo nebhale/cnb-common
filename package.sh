@@ -17,4 +17,4 @@ go build -ldflags='-s -w' -o bin/package github.com/cloudfoundry/libcfbuildpack/
 bin/package \
   --archive \
   --version "${VERSION}" \
-  "../package/${ID}/${ID}-${VERSION}.tar.gz"
+  "../package/${ID}/${ID}-${VERSION}"
