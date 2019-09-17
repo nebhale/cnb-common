@@ -8,4 +8,7 @@ if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
 fi
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../source"
+
+[[ -z $(find src -name "*.go")) ]] && exit
+
 go test ./...
