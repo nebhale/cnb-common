@@ -23,4 +23,6 @@ run:
 
 params:
   DEPENDENCY:
+  PASSWORD:
+  USERNAME:
   VERSION_PATTERN:

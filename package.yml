@@ -19,3 +19,7 @@ caches:
 
 run:
   path: cnb-common/package.sh
+
+env:
+  PASSWORD:
+  USERNAME:

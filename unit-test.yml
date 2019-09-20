@@ -16,3 +16,7 @@ caches:
 
 run:
   path: cnb-common/unit-test.sh
+
+env:
+  PASSWORD:
+  USERNAME:
