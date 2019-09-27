@@ -16,6 +16,7 @@ fi
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 
+rm go.sum
 GOPRIVATE=* go get -u all
 go mod tidy
 
