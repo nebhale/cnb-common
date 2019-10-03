@@ -1,0 +1,22 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source:
+    repository: cfje/create-builder
+    tag: latest
+
+inputs:
+- name: cnb-common
+- name: pack
+- name: package
+
+outputs:
+- name: image
+
+caches:
+- path: pack-cache
+
+run:
+  path: cnb-common/create-builder.sh
