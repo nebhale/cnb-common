@@ -10,7 +10,7 @@ fi
 ROOT="$(dirname "${BASH_SOURCE[0]}")/.."
 
 builder() {
-  printf "\n➜  Creating Builder\n"
+  printf "➜  Creating Builder\n"
 
   "pack/pack" \
     create-builder \
@@ -25,7 +25,7 @@ builder() {
 buildpacks() {
   pushd "${ROOT}/package" > /dev/null
     local ARCHIVE="$(ls *.tgz)"
-    printf "\n➜  Expanding ${ARCHIVE}\n"
+    printf "➜  Expanding ${ARCHIVE}\n"
 
     tar xzf "${ARCHIVE}"
     rm "${ARCHIVE}"
@@ -43,7 +43,7 @@ buildpacks() {
 }
 
 order() {
-  printf "\n➜  Creating order.toml\n"
+  printf "➜  Creating order.toml\n"
 
   yj -tj < "${ROOT}/package/buildpack.toml" | \
     jq '{
@@ -57,18 +57,18 @@ pack() {
   pushd "${ROOT}/pack" > /dev/null
     local ARCHIVE="$(ls pack-*.tgz)"
 
-    printf "\n➜  Expanding ${ARCHIVE}\n"
+    printf "➜  Expanding ${ARCHIVE}\n"
     tar xzf "${ARCHIVE}"
   popd > /dev/null
 }
 
 registry() {
-  printf "\n➜  Starting Registry\n"
+  printf "➜  Starting Registry\n"
   docker-registry serve /etc/docker/registry/config.yml &> /dev/null &
 }
 
 tag() {
-  printf "\n➜  Creating Tag $(cat package/version)\n"
+  printf "➜  Creating Tag $(cat package/version)\n"
   mkdir -p "image"
   cp "package/version" "image/tags"
 }
