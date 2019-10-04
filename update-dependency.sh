@@ -38,10 +38,11 @@ bin/dependency \
   "$(uri)" \
   "$(sha256)"
 
+git add buildpack.toml
+
 git \
   -c user.name='Pivotal Java Experience Team' \
   -c user.email='cfje@pivotal.io' \
   commit \
   --signoff \
-  --all \
   --message "Dependency Upgrade: ${DEPENDENCY} $(version)"
