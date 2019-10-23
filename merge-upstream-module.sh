@@ -7,6 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 git remote add upstream ../upstream
 git fetch upstream --no-tags
 
+set +e
 git \
   -c user.name='Pivotal Java Experience Team' \
   -c user.email='cfje@pivotal.io' \
@@ -16,13 +17,18 @@ git \
   --no-ff \
   $(cat ../upstream/.git/ref)
 
-git checkout HEAD -- go.mod go.sum
+STATUS=$?
+set -e
 
-rm go.sum
-GOPRIVATE=* go get -u all
-go mod tidy
+if [ $STATUS -ne 0 ]; then
+  git checkout HEAD -- go.mod go.sum
 
-git add go.mod go.sum
+  rm go.sum
+  GOPRIVATE=* go get -u all
+  go mod tidy
+
+  git add go.mod go.sum
+fi
 
 git \
   -c user.name='Pivotal Java Experience Team' \
