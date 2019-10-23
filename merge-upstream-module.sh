@@ -8,6 +8,8 @@ git remote add upstream ../upstream
 git fetch upstream --no-tags
 
 git \
+  -c user.name='Pivotal Java Experience Team' \
+  -c user.email='cfje@pivotal.io' \
   merge \
   --log \
   --no-commit \
