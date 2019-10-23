@@ -8,10 +8,22 @@ git remote add upstream ../upstream
 git fetch upstream --no-tags
 
 git \
+  merge \
+  --log \
+  --no-commit \
+  --no-ff \
+  $(cat ../upstream/.git/ref)
+
+git checkout HEAD -- go.mod go.sum
+
+rm go.sum
+GOPRIVATE=* go get -u all
+go mod tidy
+
+git add go.mod go.sum
+
+git \
   -c user.name='Pivotal Java Experience Team' \
   -c user.email='cfje@pivotal.io' \
-  merge \
-  --no-ff \
-  --log \
-  --no-edit \
-  $(cat ../upstream/.git/ref)
+  commit \
+  --no-edit
