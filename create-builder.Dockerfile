@@ -1,6 +1,6 @@
 FROM golang:latest AS build
 
-RUN go get github.com/google/go-containerregistry/cmd/crane \
+RUN GO111MODULE=on go get -u github.com/google/go-containerregistry/cmd/crane \
  && cp ${GOPATH}/bin/crane /tmp/crane
 
 RUN curl -sSL https://github.com/sclevine/yj/releases/download/v4.0.0/yj-linux > /tmp/yj \
