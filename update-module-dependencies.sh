@@ -21,6 +21,7 @@ GOPRIVATE=* go get -u all
 go mod tidy
 
 git add go.mod go.sum
+git checkout -- .
 
 git \
   -c user.name='Pivotal Java Experience Team' \

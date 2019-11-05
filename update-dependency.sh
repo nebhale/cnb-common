@@ -26,7 +26,6 @@ version() {
   cat "../dependency/version"
 }
 
-
 cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 [ -f "scripts/update-dependency.sh" ] && source "scripts/update-dependency.sh"
 
@@ -39,6 +38,7 @@ bin/dependency \
   "$(sha256)"
 
 git add buildpack.toml
+git checkout -- .
 
 git \
   -c user.name='Pivotal Java Experience Team' \
