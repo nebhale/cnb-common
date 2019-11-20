@@ -7,6 +7,11 @@ if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
   ln -s $PWD/go-module-cache ${GOPATH}/pkg/mod
 fi
 
+if [[ -d /cnb-packager-cache && ! -d ${HOME}/.cnb-packager-cache ]]; then
+  mkdir -p ${HOME}
+  ln -s /cnb-packager-cache ${HOME}/.cnb-packager-cache
+fi
+
 if [[ ! -d ${HOME}/.netrc ]]; then
   mkdir -p ${HOME}
   echo "machine github.com
@@ -23,6 +28,7 @@ VERSION="${VERSION:1}"
 go build -ldflags='-s -w' -o bin/package github.com/cloudfoundry/libcfbuildpack/packager
 bin/package \
   --archive \
+  --global_cache \
   --version "${VERSION}" \
   "../package/${ID}-${VERSION}"
 echo "${VERSION}" > "../package/version"

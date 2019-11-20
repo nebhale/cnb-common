@@ -15,6 +15,7 @@ outputs:
 - name: package
 
 caches:
+- path: cnb-packager-cache
 - path: go-module-cache
 
 run:
