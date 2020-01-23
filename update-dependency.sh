@@ -45,4 +45,4 @@ git \
   -c user.email='cfje@pivotal.io' \
   commit \
   --signoff \
-  --message "Dependency Upgrade: ${DEPENDENCY} $(version)" || true
+  --message "Dependency Upgrade: ${DEPENDENCY} $(version)"
