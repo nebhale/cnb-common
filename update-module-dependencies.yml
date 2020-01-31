@@ -19,7 +19,3 @@ caches:
 
 run:
   path: cnb-common/update-module-dependencies.sh
-
-params:
-  PASSWORD:
-  USERNAME:

@@ -7,13 +7,6 @@ if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
   ln -s $PWD/go-module-cache ${GOPATH}/pkg/mod
 fi
 
-if [[ ! -d ${HOME}/.netrc ]]; then
-  mkdir -p ${HOME}
-  echo "machine github.com
-login ${USERNAME}
-password ${PASSWORD}" > ${HOME}/.netrc
-fi
-
 cd "$(dirname "${BASH_SOURCE[0]}")/../source"
 
 rm go.sum
