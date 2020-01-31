@@ -4,23 +4,21 @@ platform: linux
 image_resource:
   type: registry-image
   source:
-    repository: golang
+    repository: cfje/create-package
     tag: latest
 
 inputs:
 - name: cnb-common
+- name: pack
 - name: source
 
 outputs:
-- name: package
+- name: image
 
 caches:
 - path: cnb-packager-cache
 - path: go-module-cache
+- path: pack-cache
 
 run:
-  path: cnb-common/package.sh
-
-params:
-  PASSWORD:
-  USERNAME:
+  path: cnb-common/create-package.sh
