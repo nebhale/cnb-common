@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+source common.sh
 
-if [[ -d $PWD/go-module-cache && ! -d ${GOPATH}/pkg/mod ]]; then
-  mkdir -p ${GOPATH}/pkg
-  ln -s $PWD/go-module-cache ${GOPATH}/pkg/mod
-fi
 
-if [[ ! -d ${HOME}/.netrc ]]; then
-  mkdir -p ${HOME}
-  echo "machine github.com
-login ${USERNAME}
-password ${PASSWORD}" > ${HOME}/.netrc
-fi
+
+
+
+
+
+
+
+
 
 sha256() {
   cat "../dependency/sha256"
@@ -26,7 +25,7 @@ version() {
   cat "../dependency/version"
 }
 
-cd "$(dirname "${BASH_SOURCE[0]}")/../source"
+cd "${ROOT}/source"
 [ -f "scripts/update-dependency.sh" ] && source "scripts/update-dependency.sh"
 
 go build -ldflags='-s -w' -o bin/dependency github.com/cloudfoundry/libcfbuildpack/dependency

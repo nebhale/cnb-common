@@ -15,5 +15,8 @@ inputs:
 outputs:
 - name: source
 
+caches:
+- path: go-cache
+
 run:
   path: cnb-common/merge-upstream-module.sh

@@ -17,7 +17,7 @@ outputs:
 
 caches:
 - path: cnb-packager-cache
-- path: go-module-cache
+- path: go-cache
 - path: pack-cache
 
 run:

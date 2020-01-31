@@ -1,20 +1,7 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-
-if [[ -d $PWD/cnb-packager-cache && ! -d ${HOME}/.cnb-packager-cache ]]; then
-  mkdir -p ${HOME}
-  ln -s $PWD/cnb-packager-cache ${HOME}/.cnb-packager-cache
-fi
-
-export GOPATH=$PWD/go-module-cache
-
-if [[ -d $PWD/pack-cache && ! -d ${HOME}/.pack ]]; then
-  mkdir -p ${HOME}
-  ln -s $PWD/pack-cache ${HOME}/.pack
-fi
-
-ROOT="$(realpath $(dirname "${BASH_SOURCE[0]}")/..)"
+source common.sh
 
 build() {
   pushd "${ROOT}/source" > /dev/null
@@ -30,16 +17,9 @@ build() {
   popd > /dev/null
 }
 
-pack() {
-  pushd "${ROOT}/pack" > /dev/null
-    local ARCHIVE="$(ls pack-*.tgz)"
-
-    printf "➜ Expanding ${ARCHIVE}\n"
-    tar xzf "${ARCHIVE}"
-  popd > /dev/null
-}
-
 package() {
+  printf "➜ Creating Package\n"
+
   yj -tj < "${ROOT}/build/buildpack.toml" | \
     jq '{
       buildpack: {
@@ -61,11 +41,6 @@ packager() {
   printf "➜ Building Packager\n"
   go get github.com/cloudfoundry/libcfbuildpack/packager
   go build -ldflags="-s -w" github.com/cloudfoundry/libcfbuildpack/packager
-}
-
-registry() {
-  printf "➜ Starting Registry\n"
-  docker-registry serve /etc/docker/registry/config.yml &> /dev/null &
 }
 
 tag() {

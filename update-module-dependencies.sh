@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+source common.sh
 
-if [[ -d $PWD/go-cache ]]; then
-  export GOPATH=$PWD/go-cache
-fi
-
-cd "$(dirname "${BASH_SOURCE[0]}")/../source"
+cd "${ROOT}/source"
 
 rm go.sum
 GOPRIVATE=* go get -u all

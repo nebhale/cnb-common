@@ -9,8 +9,9 @@ image_resource:
 
 inputs:
 - name: cnb-common
+- name: lifecycle
 - name: pack
-- name: package
+- name: source
 
 outputs:
 - name: image

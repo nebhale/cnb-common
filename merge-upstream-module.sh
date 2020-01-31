@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+source common.sh
 
-cd "$(dirname "${BASH_SOURCE[0]}")/../source"
+
+
+
+
+
+
+cd "${ROOT}/source"
 
 git remote add upstream ../upstream
 git fetch upstream --no-tags
