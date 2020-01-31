@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-source common.sh
+source $(dirname $0)/common.sh
 
 builder() {
   printf "➜ Creating Builder\n"
