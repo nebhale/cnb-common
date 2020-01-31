@@ -6,7 +6,7 @@ RUN GO111MODULE=on go get -u github.com/google/go-containerregistry/cmd/crane \
 RUN curl -sSL https://github.com/sclevine/yj/releases/download/v4.0.0/yj-linux > /tmp/yj \
  && chmod +x /tmp/yj
 
-FROM ubuntu:bionic
+FROM golang:latest
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     ca-certificates \
