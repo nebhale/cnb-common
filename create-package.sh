@@ -20,18 +20,22 @@ build() {
 package() {
   printf "➜ Creating Package\n"
 
-  yj -tj < "${ROOT}/build/buildpack.toml" | \
-    jq '{
-      buildpack: {
-        uri: "build"
-      },
-      stacks: .stacks
-    }' | yj -jt > "package.toml"
+  if [[ ! -f "${ROOT}/source/package.toml" ]]; then
+    printf "➜ Creating package.toml\n"
+
+    yj -tj < "${ROOT}/build/buildpack.toml" | \
+      jq '{
+        buildpack: {
+          uri: "build"
+        },
+        stacks: .stacks
+      }' | yj -jt > "${ROOT}/source/package.toml"
+  fi
 
   pack/pack \
     create-package \
     localhost:5000/builder \
-    -p package.toml \
+    -p "${ROOT}/source/package.toml" \
     --publish
 
     crane pull localhost:5000/builder "image/image.tar"
