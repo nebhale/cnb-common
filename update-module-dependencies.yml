@@ -15,7 +15,7 @@ outputs:
 - name: source
 
 caches:
-- path: go-module-cache
+- path: go-cache
 
 run:
   path: cnb-common/update-module-dependencies.sh
